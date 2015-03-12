@@ -9,14 +9,17 @@ var app = angular.module('madoff2mvp', []);
 
 app.controller('loginController', function($scope, $rootScope) {
     if (rootRef.getAuth()) {
+        // TODO remove root scope and route stuff!!!
         $rootScope.loggedIn = true;
     }
 
     $scope.register = function() {
+        $scope.processing = true;
         rootRef.createUser({
             email    : $scope.email,
             password : $scope.password
         }, function(error, userData) {
+            $scope.processing = false;
             if (error) {
                 console.log("Error creating user:", error);
             } else {
@@ -28,10 +31,12 @@ app.controller('loginController', function($scope, $rootScope) {
     };
 
     $scope.login = function() {
+        $scope.processing = true;
         rootRef.authWithPassword({
             email    : $scope.email,
             password : $scope.password
         }, function(error, authData) {
+            $scope.processing = false;
             if (error) {
                 console.log("Login Failed!", error);
             } else {
