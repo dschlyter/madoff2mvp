@@ -9,6 +9,8 @@
     <body ng-app="madoff2mvp" class="container">
         <h1>Madoff</h1>
 
+        <!-- TODO alert directive -->
+
         <div ng-controller="loginController" class="row">
             <form ng-hide="loggedIn" class="col-md-4">
                 <div class="form-group">
@@ -29,8 +31,16 @@
 
         <div ng-controller="appController"> 
             <div ng-show="loggedIn">
-                <h2>Grupp: Alperna</h2> (yes hårdkodat)
+                <h2>Grupp: Alperna <small>(ofc hårdkodat)</small></h2> 
+
+                TODO skulder mellan alla
+
+                TODO alla kvitton
+
+                TODO lägg till kvitto
             </div>
         </div>
+
+        TODO routing?
     </body>
 </html>
