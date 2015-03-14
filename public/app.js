@@ -5,14 +5,38 @@ var rootRef = new Firebase(url);
 
 // Angular setup
 
-var app = angular.module('madoff2mvp', []);
+var app = angular.module('madoff2mvp', [
+        'ngRoute'
+        ]);
 
-app.controller('loginController', function($scope, $rootScope) {
-    if (rootRef.getAuth()) {
-        // TODO remove root scope and route stuff!!!
-        $rootScope.loggedIn = true;
+app.config(['$routeProvider',
+        function($routeProvider) {
+            $routeProvider.when('/login', {
+                templateUrl: 'loginView.html',
+                controller: 'LoginController'
+            }).when('/groups', {
+                templateUrl: 'groupView.html',
+                controller: 'GroupController'
+            }).when('/expenses/new', {
+                templateUrl: 'expenseCreateView.html',
+                controller: 'ExpenseCreateController'
+            }).when('/expenses/:id', {
+                templateUrl: 'expenseView.html',
+                controller: 'ExpenseController'
+            }).otherwise({
+                redirectTo: '/groups'
+            });
+        }]);
+
+/*
+app.run(function($rootScope, $location) {
+    if (!rootRef.getAuth()) {
+        $location.path("/login");
     }
+});
+*/
 
+app.controller('LoginController', ['$scope', '$location', function($scope, $location) {
     $scope.register = function() {
         $scope.processing = true;
         rootRef.createUser({
@@ -24,8 +48,7 @@ app.controller('loginController', function($scope, $rootScope) {
                 console.log("Error creating user:", error);
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
-                $rootScope.loggedIn = true;
-                $rootScope.$apply();
+                $location.path("/groups");
             }
         });
     };
@@ -41,20 +64,19 @@ app.controller('loginController', function($scope, $rootScope) {
                 console.log("Login Failed!", error);
             } else {
                 console.log("Authenticated successfully with payload:", authData);
-                $rootScope.loggedIn = true;
-                $rootScope.$apply();
+                $location.path("/groups");
             }
         });
     };
 
     $scope.logout = function() {
         rootRef.unauth();
-        $rootScope.loggedIn = false;
+        $location.path("/login");
     };
-});
+}]);
 
-app.controller('appController', function($scope) {
-
+app.controller('GroupController', function($scope) {
+    $scope.hej = "hejsan";
 });
 
 // Jaja, inte jätteprio, men tanken är att alla user alerts skickas hit

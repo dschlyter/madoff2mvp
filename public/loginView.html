@@ -1,0 +1,14 @@
+<div class="row">
+    <form ng-hide="loggedIn" class="col-md-4">
+        <div class="form-group">
+            <label for="emailInput">Email address</label>
+            <input type="email" class="form-control" id="emailInput" ng-model="email"/>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" ng-model="password">
+        </div>
+        <button type="submit" class="btn btn-success" ng-disabled="processing" ng-click="login()">Login</button>
+        <button type="button" class="btn btn-info" ng-disabled="processing" ng-click="register()">Register</button>
+    </form>
+</div>

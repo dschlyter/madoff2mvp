@@ -1,48 +1,21 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
         <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
         <script src="app.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <title>Madoff 2 Less than viable product</title>
     </head>
     <body ng-app="madoff2mvp" class="container">
-        <h1>Madoff</h1>
-
-        <!-- TODO alert directive -->
-
-        <div ng-controller="loginController" class="row">
-            <form ng-hide="loggedIn" class="col-md-4">
-                <div class="form-group">
-                    <label for="emailInput">Email address</label>
-                    <input type="email" class="form-control" id="emailInput" ng-model="email"/>
-                </div>
-                <div class="form-group">
-                    <label for="passwordInput">Password</label>
-                    <input type="password" class="form-control" id="passwordInput" ng-model="password">
-                </div>
-                <button type="submit" class="btn btn-success" ng-disabled="processing" ng-click="login()">Login</button>
-                <button type="button" class="btn btn-info" ng-disabled="processing" ng-click="register()">Register</button>
-            </form>
-            <div ng-show="loggedIn" class="col-md-12">
+        <div class="row" ng-controller="LoginController">
+            <div class="col-md-12">
+                <h1>Madoff</h1>
                 <button type="submit" class="btn btn-default pull-right" ng-click="logout()">Logout</button>
+                <!-- TODO alert directive -->
             </div>
         </div>
 
-        <div ng-controller="appController"> 
-            <div ng-show="loggedIn">
-                <h2>Grupp: Alperna <small>(ofc hårdkodat)</small></h2> 
-
-                TODO skulder mellan alla
-
-                TODO alla kvitton
-
-                TODO lägg till kvitto
-
-                Test push
-            </div>
-        </div>
-
-        TODO routing?
+        <div ng-view></div>
     </body>
 </html>
