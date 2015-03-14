@@ -49,6 +49,7 @@ app.controller('LoginController', ['$scope', '$location', function($scope, $loca
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 $location.path("/groups");
+                $scope.$apply();
             }
         });
     };
@@ -65,6 +66,7 @@ app.controller('LoginController', ['$scope', '$location', function($scope, $loca
             } else {
                 console.log("Authenticated successfully with payload:", authData);
                 $location.path("/groups");
+                $scope.$apply();
             }
         });
     };
